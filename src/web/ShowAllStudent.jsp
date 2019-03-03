@@ -1,3 +1,8 @@
+<%@ page import="entity.Student" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="dao.DatabaseDAO" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -5,7 +10,7 @@
     <meta charset="utf-8">
     <title>fSchool</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="css/addstudent.css">
+    <link rel="stylesheet" href="css/ShowAllStudent.css">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/menu.css">
     <script src="js/jquery1111.min.js" type="text/javascript"></script>
@@ -35,14 +40,29 @@
         </div>
     </header>
 
-    <div class="addstudent">
-        <h1>Add Student</h1>
-        <form action="servlet.MyServlet" method="Post">
-            name : <input type="text" name="name"><br><br>
-            surname : <input type="text" name="surname"><br><br>
-            <input type="hidden" value="addstudent" name="actionname">
-            <input type="submit" value="Send"><br>
-        </form>
+    <div class="ShowAllStudent">
+        <h1>All Students</h1>
+        <table>
+            <%
+                DatabaseDAO dao = new DatabaseDAO();
+                ArrayList<Student> students = dao.readAllStudentsFromDB();
+                for (Student student : students) {
+            %>
+            <tr>
+                <td><%=student.getSurname()%></td>
+                <td><%=student.getName()%></td>
+                <td>
+                    <form action="servlet.MyServlet" method="Post">
+                        <input type="hidden" name="id" value="<%=student.getId()%>"><br>
+                        <input type="hidden" name="actionname" value="RemoveStudent">
+                        <input type="submit" value="X"><br>
+                    </form>
+                </td>
+            </tr>
+            <%
+                }
+            %>
+        </table>
     </div>
 </div>
 </body>

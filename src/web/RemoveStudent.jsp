@@ -1,20 +1,12 @@
-<%@page import="java.sql.*" %>
-<% Class.forName("com.mysql.jdbc.Driver"); %>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
-
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta charset="utf-8">
     <title>fSchool</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     <link rel="stylesheet" href="css/RemoveStudent.css">
-
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
     <link rel="stylesheet" href="css/menu.css">
     <script src="js/jquery1111.min.js" type="text/javascript"></script>
     <script src="js/script.js"></script>
@@ -44,7 +36,7 @@
 
 <div class="RemoveStudent">
     <h1>Remove Student</h1>
-    <form action="MyServlet" method="Post">
+    <form action="servlet.MyServlet" method="Post">
         id : <input type="number" name="id"><br><br>
 
         <input type="hidden" value="RemoveStudent" name="actionname">
